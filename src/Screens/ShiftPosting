@@ -1,19 +1,39 @@
-import react from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const ShiftPosting = () => {
     return (
         <View style={styles.container}>
-            <Text>It is time to begin the work :)</Text> 
-        </View>   
-    )
-    }
+            <Text style={styles.title}>Shift Posting</Text>
+            {/* Add your shift posting form or components here */}
+            <TouchableOpacity style={styles.addButton}>
+                <Ionicons name="add" size={24} color="white" />
+            </TouchableOpacity>
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-  });
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 16,
+    },
+    addButton: {
+        position: 'absolute',
+        bottom: 16,
+        right: 16,
+        backgroundColor: 'blue',
+        borderRadius: 50,
+        padding: 16,
+    },
+});
+
+export default ShiftPosting;
