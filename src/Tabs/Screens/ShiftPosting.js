@@ -5,35 +5,27 @@ import { Ionicons } from '@expo/vector-icons';
 
 const ShiftPosting = () => {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Shift Posting</Text>
-            {/* Add your shift posting form or components here */}
-            <TouchableOpacity style={styles.addButton}>
-                <Ionicons name="add" size={24} color="white" />
-            </TouchableOpacity>
-        </View>
+        
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <TouchableOpacity style={styles.closeButton}>
+                        <Ionicons name="close" size={24} color="black" />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.textboxContainer}>
+                    <TextInput style={styles.textbox} />
+                    <TextInput style={styles.textbox} />
+                    <TextInput style={styles.textbox} />
+                    <TextInput style={styles.textbox} />
+                    <TextInput style={styles.textbox} />
+                </View>
+            </View>
+        
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 16,
-    },
-    addButton: {
-        position: 'absolute',
-        bottom: 16,
-        right: 16,
-        backgroundColor: 'blue',
-        borderRadius: 50,
-        padding: 16,
-    },
+
 });
 
 export default ShiftPosting;
