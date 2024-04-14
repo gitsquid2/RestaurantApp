@@ -1,13 +1,15 @@
 import react from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const RestaurantProfile = () => {
+const LoginScreen = () => {
     return (
         <View style={styles.container}>
-            <Text>It is time to begin the work :)</Text>
-        </View>
+            <Text>It is time to begin the work :)</Text> 
+        </View>   
     )
     }
+
+export default LoginScreen
 
 const styles = StyleSheet.create({
     container: {

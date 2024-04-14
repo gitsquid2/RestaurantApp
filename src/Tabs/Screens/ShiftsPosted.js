@@ -1,14 +1,14 @@
 import react from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const RestaurantReviewsPage = () => {
+const ShiftsPosted = () => {
     return (
         <View style={styles.container}>
             <Text>It is time to begin the work :)</Text> 
         </View>   
     )
     }
-
+export default ShiftsPosted
 const styles = StyleSheet.create({
     container: {
       flex: 1,

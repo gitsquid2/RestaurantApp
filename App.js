@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import HomeScreen from './Screens/HomeScreen';
 import Tabs from "./src/Tabs/BottomTab.js";
 
 function App() {
+
   return (
     <NavigationContainer>
       <Tabs />

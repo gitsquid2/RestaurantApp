@@ -1,10 +1,10 @@
 import React from 'react';
-import HomeScreen from './Screens/HomeScreen';
-import LoginScreen from './Screens/LoginScreen';
-import RestaurantProfile from './Screens/RestaurantProfile';
-import RestaurantReviewsPage from './Screens/RestaurantReviewsPage';
-import ShiftPosting from './Screens/ShiftPosting';
-import ShiftsPosted from './Screens/ShiftsPosted';
+import HomeScreen from './Screens/HomeScreen.js';
+import LoginScreen from './Screens/LoginScreen.js';
+import RestaurantProfile from './Screens/RestaurantProfile.js';
+import RestaurantReviewsPage from './Screens/RestaurantReviewsPage.js';
+import ShiftPosting from './Screens/ShiftPosting.js';
+import ShiftsPosted from './Screens/ShiftsPosted.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
@@ -22,7 +22,7 @@ const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
   return (
-    <NavigationContainer>
+    //<NavigationContainer>
 
         <Tab.Navigator 
         initialRouteName="Logout"
@@ -85,7 +85,7 @@ const Tabs = () => {
             }} />
             
         </Tab.Navigator>
-    </NavigationContainer>
+    //</NavigationContainer>
   );
 }
 
