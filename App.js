@@ -1,62 +1,22 @@
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import Tabs from "./src/Tabs/BottomTab.js";
 
-import { Button, StyleSheet, Text, View } from 'react-native';
-import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack'; 
-import RestaurantProfile from './Screens/RestaurantProfile'; 
-import RestaurantReviewsPage from './Screens/RestaurantReviewsPage';
+function App() {
 
-const Stack = createNativeStackNavigator();
-
-const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{title: 'Welcome'}}
-        />
-        <Stack.Screen name="RestaurantProfile" component={RestaurantProfile}/>
-        <Stack.Screen name="RestaurantReviewsPage" component={RestaurantReviewsPage}/>
-      </Stack.Navigator>
+      <Tabs />
     </NavigationContainer>
-  )
+  );
+
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fef4f0",
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-
-});
-
-const HomeScreen = ({navigation}) => {
-  return (
-    <View style={styles.container}>
-      <Text> Home!</Text>
-      <Button
-        title="GoTo Restaurant Profile"
-        onPress={() =>
-          navigation.navigate("RestaurantProfile")
-        }
-      />
-      <Button
-        title="This does nothing :)"
-      />
-    </View>
-  );
-};
-const OtherScreen = ({navigation}) => {
-  return (
-    <View style={styles.container}>
-            <Text> YOOO </Text>
-        </View>
-  );
-};
-
 export default App;
+
+
+
+/*
+/If you want to add a page to navigation, go the the tabs folder and go to bottomTab.js
+/you also don't need to import the page here, just add it to the bottomTab.js file
+*/
+
