@@ -1,10 +1,22 @@
 import react from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { StyleSheet,View,Text,Image,TextInput,TouchableOpacity, Touchable} from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
+const navagation=useNavigation();
+
+const handleLogout=()=>{
+    navagation.navigate("Login")
+}
+
     return (
         <View style={styles.container}>
-            <Text>It is time to begin the work :)</Text> 
+           
+            <Text>.. 🚧</Text> 
+            <TouchableOpacity style={styles.button} onPress={handleLogout}>
+                <Text style={styles.buttonText}>Logout
+                </Text>
+            </TouchableOpacity>
         </View>   
     )
     }
@@ -17,5 +29,18 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-    },
+    },    
+
+      button: {
+        width: '80%',
+        height: 40,
+        backgroundColor: 'blue',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+      },
+      buttonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+      },
   });

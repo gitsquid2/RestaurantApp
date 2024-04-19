@@ -43,9 +43,11 @@ const Tabs = () => {
                 name={'log-in'}
                 size={25}
                 color={focused ? 'orange' : 'black'} 
-              />)
+              />
+            )
           }}
         />
+        
             <Tab.Screen name="Home" component={HomeScreen} options={{
                 headerShown: false,
                 tabBarIcon: ({ focused }) => (
