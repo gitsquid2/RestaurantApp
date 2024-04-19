@@ -8,6 +8,7 @@ import ShiftsPosted from './Screens/ShiftsPosted.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
+import Login from './Screens/Login.js';
 
 
 
@@ -27,11 +28,24 @@ const Tabs = () => {
     //<NavigationContainer>
 
         <Tab.Navigator 
-        initialRouteName="Logout"
+        initialRouteName="Login"
         screenOptions={{
             tabBarActiveTintColor: 'blue',
             tabBarInactiveTintColor: 'gray'
         }}>
+                <Tab.Screen 
+          name="Login" 
+          component={Login} // Use SignInScreen component for signing in
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <Feather 
+                name={'log-in'}
+                size={25}
+                color={focused ? 'orange' : 'black'} 
+              />)
+          }}
+        />
             <Tab.Screen name="Home" component={HomeScreen} options={{
                 headerShown: false,
                 tabBarIcon: ({ focused }) => (

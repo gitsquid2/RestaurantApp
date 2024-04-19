@@ -1,5 +1,8 @@
 import react from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import {StyleSheet,View,Text,Image,TextInput,TouchableOpacity, Touchable} from 'react-native'
+import { StatusBar } from "expo-status-bar";
+import Animated, {FadeIn,FadeInDown,FadeInUp,FadeOut} from "react-native-reanimated";
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
     return (
