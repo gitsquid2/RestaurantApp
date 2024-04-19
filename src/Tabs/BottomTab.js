@@ -10,6 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
 
 
+
 /*
 /In order to see whatever new screen you're working on, you need to add it here.
 /Import the screen at the top of the file, then add it down below.
@@ -19,6 +20,7 @@ import { Feather } from '@expo/vector-icons';
 
 
 const Tab = createBottomTabNavigator();
+
 
 const Tabs = () => {
   return (
@@ -74,11 +76,11 @@ const Tabs = () => {
                         color={focused ? 'orange' : 'black'} />)
             
             }} />
-            <Tab.Screen name="Logout" component={LoginScreen} options={{
+            <Tab.Screen name="Settings" component={LoginScreen} options={{
                 headerShown: false,
                 tabBarIcon: ({ focused }) => (
                     <Feather 
-                        name={'log-out'}
+                        name={'settings'}
                         size={25}
                         color={focused ? 'orange' : 'black'} />)
             
