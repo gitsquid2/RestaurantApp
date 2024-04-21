@@ -18,10 +18,10 @@ const ShiftsPosted = () => {
             
             <Text style={styles.shiftTime}>{item.time}</Text>
             <Text style={styles.shiftPayRate}>{item.payRate}</Text>
-            <Text style={styles.shiftStatus}>{item.isOpen ? 'Open' : 'Closed'}</Text>
+            <Text style={styles.shiftStatus}>{item.isOpen ? 'Open' : ' Closed'}</Text>
         </View>
     );
-    <button style={[styles.button]}onPress={postShift}>+</button>
+    <button style={[styles.button]}onPress={postShift}></button>
     return (
         <View style={[styles.container]}>
             <FlatList
@@ -38,7 +38,7 @@ const ShiftsPosted = () => {
 
 export default ShiftsPosted;
 
-function postShift({ ShiftPosting }) {
+function postShift({}) {
     const navigation = useNavigation();
 
     return (

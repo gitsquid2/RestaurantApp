@@ -1,9 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-
-
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import ShiftsPosted from './ShiftsPosted';
+import { useNavigation } from '@react-navigation/native';
 /*const [position, setPosition] = React.useState(' ');
 const [startTime, setStartTime] = React.useState(' ');
 const [endTime, setEndTime] = React.useState(' ');
@@ -12,16 +10,14 @@ const [rate, setRate] = React.useState(' ');
 const [description, setDescription] = React.useState(' ');
 */
 const ShiftPosting = () => {
+    const navigation = useNavigation();
     //let [Position, onChangeText] = React.useState(' ');
     return (
         
             <View style={styles.container}>
-                <View style={styles.header}>
-                    <TouchableOpacity style={styles.closeButton}>
-                        <Ionicons name="close" size={24} color="black" />
-                    </TouchableOpacity>
-                </View>
+                
                 <View style={styles.textboxContainer}>
+                    <Text style={styles.Text}>Please enter in the details of the shift! </Text>
                     <TextInput style={styles.textbox} placeholder='Position'/>
                     <TextInput style={styles.textbox} placeholder='Start Time'/>
                     <TextInput style={styles.textbox} placeholder='End Time'/>
@@ -31,11 +27,12 @@ const ShiftPosting = () => {
                     editable
                     multiline
                     numberOfLines={5}
-                    
-                    
                     />
                 </View>
-                <Text> Position </Text>
+                <View style={styles.Buttons}>
+                    <Button style={styles.closingButtons}  title='Submit' onPress={() => navigation.navigate(ShiftsPosted)}/>
+                    <Button  title='Cancel' onPress={() => navigation.navigate(ShiftsPosted)}/>
+                </View>
             </View>
         
     );
@@ -68,7 +65,26 @@ const styles = StyleSheet.create({
     },
     textbox2: {
         height: 100, width: 200, borderColor: 'gray', borderWidth: 1, margin: 12,
-    }
+    },
+    Buttons: {
+        //borderWidth: 1,
+        //padding: 10,
+        margin: 75,
+        height: 60,
+        
+    },
+    closingButtons: {
+        position: 'absolute',
+        top: 50,
+        right: 20,
+    },
+    Text: {
+        fontSize: 20,
+        color: 'black',
+        fontWeight: 'bold',
+        height: 40,
+    },
+    
 
 });
 
