@@ -4,6 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Tabs from "./src/Tabs/BottomTab.js";
 import ShiftPosting from "./src/Tabs/Screens/ShiftPosting.js";
 import RestaurantReviewsPage from './src/Tabs/Screens/RestaurantReviewsPage.js';
+import Login from './src/Tabs/Screens/Login.js';
+import Signup from './src/Tabs/Screens/Signup.js';
+import HomeScreen from './src/Tabs/Screens/HomeScreen.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,10 +14,15 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+      initialRouteName='Login'
+      >
         <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
         <Stack.Screen name="ShiftPosting" component={ShiftPosting} />
         <Stack.Screen name="RestaurantReviewsPage" component={RestaurantReviewsPage} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
