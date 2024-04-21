@@ -1,7 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import ShiftPosting from './ShiftPosting.js';
+
 
 const ShiftsPosted = () => {
+    const navigation = useNavigation();
     const shifts = [
 
         { time: '9:00 AM - 5:00 PM', payRate: '$15/hour', isOpen: true },
@@ -17,7 +21,7 @@ const ShiftsPosted = () => {
             <Text style={styles.shiftStatus}>{item.isOpen ? 'Open' : 'Closed'}</Text>
         </View>
     );
-
+    <button style={[styles.button]}onPress={postShift}>+</button>
     return (
         <View style={[styles.container]}>
             <FlatList
@@ -25,11 +29,26 @@ const ShiftsPosted = () => {
                 renderItem={renderShiftItem}
                 keyExtractor={(item, index) => index.toString()}
             />
+            <Button
+                title={'Go to ShiftPosting'}
+                onPress={() => navigation.navigate(ShiftPosting)}/>
         </View>
     );
 };
 
 export default ShiftsPosted;
+
+function postShift({ ShiftPosting }) {
+    const navigation = useNavigation();
+
+    return (
+        <Button
+            title={'Go to ${ShiftPosting}'}
+            onPress={() => navigation.navigate('ShiftPosting')}
+        />
+    );
+
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -56,5 +75,11 @@ const styles = StyleSheet.create({
     shiftStatus: {
         fontSize: 14,
         color: '#888',
+    },
+    button: {
+        backgroundColor: 'blue',
+        padding: 20,
+        borderRadius: 5,
+        Text: '+',
     },
 });
