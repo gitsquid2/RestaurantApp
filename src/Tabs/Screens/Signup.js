@@ -1,6 +1,6 @@
 import react from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-
+import { useNavigation } from "@react-navigation/native";
 const Signup = () => {
     return (
         <View style={styles.container}>

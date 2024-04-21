@@ -26,7 +26,7 @@ export default LoginScreen
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#dcfce7',
       alignItems: 'center',
       justifyContent: 'center',
     },    
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
       button: {
         width: '80%',
         height: 40,
-        backgroundColor: 'blue',
+        backgroundColor: '#1e40af',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,

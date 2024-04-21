@@ -9,6 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
 import Login from './Screens/Login.js';
+import Signup from './Screens/Signup.js'
 
 
 
@@ -47,6 +48,7 @@ const Tabs = () => {
             )
           }}
         />
+        
         
             <Tab.Screen name="Home" component={HomeScreen} options={{
                 headerShown: false,

@@ -25,7 +25,7 @@ const Login = () =>{
         <View style={styles.container}>
           {/**for some reason this is not picking up */}
           <Image source={require('../../../assets/setter.png')} style={styles.image} />
-            <Text style={styles.title}>Login under construction... 🚧</Text>
+            <Text style={styles.title}>Login</Text>
             <TextInput
             style={styles.input}
             placeholder="Username"
@@ -56,17 +56,16 @@ const Login = () =>{
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#dcfce7',
       alignItems: 'center',
       justifyContent: 'center',
+      paddingBottom: 20,
     },  
-      image: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      resizeMode: 'cover',
+     
+    image: {
+      width: 200,
+      height: 200,
+      resizeMode: 'contain',
     },
     title: {
         fontSize: 24,
@@ -76,6 +75,7 @@ const styles = StyleSheet.create({
     input: {
         width: '80%',
         height: 40,
+        backgroundColor: '#fafafa',
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 5,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
       button: {
         width: '80%',
         height: 40,
-        backgroundColor: 'blue',
+        backgroundColor: '#1e40af',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
@@ -95,8 +95,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
       },
       signupText: {
-        color: 'blue',
+        color: '#1e40af',
         textDecorationLine: 'underline',
+        paddingTop: 10,
+  
     },
   });
   export default Login;
