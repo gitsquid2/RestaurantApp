@@ -12,11 +12,14 @@ const ShiftsPosted = () => {
 
         {position: 'Wait Staff ', time: '9:00 AM - 5:00 PM', payRate: ' $15/hour', isOpen: true },
         {position: 'Bus Boy', time: ' 1:00 PM - 9:00 PM', payRate: ' $13/hour', isOpen: false },
-        {position: 'Bartender', time: ' 6:00 PM - 2:00 AM', payRate: ' $18/hour', isOpen: true },
+        {position: 'Wait Staff ', time: ' 6:00 PM - 2:00 AM', payRate: ' $15/hour', isOpen: true },
+        {position: 'Bus Boy', time: ' 4:00 PM - 9:00 PM', payRate: ' $13/hour', isOpen: true },
+        {position: 'Bartender', time: ' 12:00 PM - 9:00 PM', payRate: ' $18/hour', isOpen: true },
+        {position: 'Cashier', time: ' 9:00 AM - 5:00 PM', payRate: ' $18/hour', isOpen: true },
     ];
 
     const renderShiftItem = ({ item }) => (
-        <TouchableOpacity style={[styles.shiftItem, {marginTop: 50}]}>
+        <TouchableOpacity style={[styles.shiftItem]}>
             <Text style={styles.shiftPosition}>{item.position}</Text>
             <Text style={styles.shiftTime}>{item.time}</Text>
             <Text style={styles.shiftPayRate}>{item.payRate}</Text>
