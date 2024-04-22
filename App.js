@@ -18,9 +18,9 @@ function App() {
       initialRouteName='Login'
       >
         <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
-        <Stack.Screen name="ShiftPosting" component={ShiftPosting} />
+        <Stack.Screen name="ShiftPosting" component={ShiftPosting} options={{title: 'Shift Posting', headerStyle: {backgroundColor: '#8BC2C6'}}} />
         <Stack.Screen name="RestaurantReviewsPage" component={RestaurantReviewsPage} />
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false}}/>
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
       </Stack.Navigator>

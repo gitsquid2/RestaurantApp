@@ -1,25 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {Modal, View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import ShiftPosting from './ShiftPosting.js';
 
 
 const ShiftsPosted = () => {
     const navigation = useNavigation();
+    const route = useRoute();
+    const [modalVisible, setModalVisible] = React.useState(false);
     const shifts = [
 
-        { time: '9:00 AM - 5:00 PM', payRate: '$15/hour', isOpen: true },
-        { time: '1:00 PM - 9:00 PM', payRate: '$20/hour', isOpen: false },
-        { time: '6:00 PM - 2:00 AM', payRate: '$25/hour', isOpen: true },
+        {position: 'Wait Staff ', time: '9:00 AM - 5:00 PM', payRate: ' $15/hour', isOpen: true },
+        {position: 'Bus Boy', time: ' 1:00 PM - 9:00 PM', payRate: ' $13/hour', isOpen: false },
+        {position: 'Bartender', time: ' 6:00 PM - 2:00 AM', payRate: ' $18/hour', isOpen: true },
     ];
 
     const renderShiftItem = ({ item }) => (
-        <View style={[styles.shiftItem, {marginTop: 50}]}>
-            
+        <TouchableOpacity style={[styles.shiftItem, {marginTop: 50}]}>
+            <Text style={styles.shiftPosition}>{item.position}</Text>
             <Text style={styles.shiftTime}>{item.time}</Text>
             <Text style={styles.shiftPayRate}>{item.payRate}</Text>
             <Text style={styles.shiftStatus}>{item.isOpen ? 'Open' : ' Closed'}</Text>
-        </View>
+        </TouchableOpacity>
     );
     <button style={[styles.button]}onPress={postShift}></button>
     return (
@@ -28,9 +30,10 @@ const ShiftsPosted = () => {
                 data={shifts}
                 renderItem={renderShiftItem}
                 keyExtractor={(item, index) => index.toString()}
+                refreshing={true}
             />
             <Button
-                title={'Go to ShiftPosting'}
+                title={'Post a Shift!'}
                 onPress={() => navigation.navigate(ShiftPosting)}/>
         </View>
     );
@@ -53,7 +56,7 @@ function postShift({}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#8aff6f',
+        backgroundColor: '#bae7ea',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -64,6 +67,10 @@ const styles = StyleSheet.create({
         padding: 10,
         borderWidth: 1,
         borderColor: '#ccc',
+    },
+    shiftPosition: {
+        fontSize: 18,
+        fontWeight: 'bold',
     },
     shiftTime: {
         fontSize: 16,
