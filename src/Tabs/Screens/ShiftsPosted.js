@@ -2,6 +2,7 @@ import React from 'react';
 import {Modal, View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ShiftPosting from './ShiftPosting.js';
+import Example from './Example.js';
 
 
 const ShiftsPosted = () => {
@@ -35,9 +36,16 @@ const ShiftsPosted = () => {
                 keyExtractor={(item, index) => index.toString()}
                 refreshing={true}
             />
-            <Button
-                title={'Post a Shift!'}
-                onPress={() => navigation.navigate(ShiftPosting)}/>
+            <View style={{ alignItems: 'center', margin: 50 }}>
+                <Button
+                    title={'Post a Shift!'}
+                    buttonStyle={{ margin: 50 }}
+                    onPress={() => navigation.navigate(ShiftPosting)} />
+                <Button
+                    title={'Example Shift'}
+                    buttonStyle={{ margin: 50 }}
+                    onPress={() => navigation.navigate(Example)} />
+            </View>
         </View>
     );
 };
@@ -51,6 +59,18 @@ function postShift({}) {
         <Button
             title={'Go to ${ShiftPosting}'}
             onPress={() => navigation.navigate('ShiftPosting')}
+        />
+    );
+
+}
+
+function showExample({}) {
+    const navigation = useNavigation();
+
+    return (
+        <Button
+            title={'Go to ${Example}'}
+            onPress={() => navigation.navigate('Example')}
         />
     );
 

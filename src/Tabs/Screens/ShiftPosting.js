@@ -3,13 +3,7 @@ import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import ShiftsPosted from './ShiftsPosted';
 import { useNavigation } from '@react-navigation/native';
 
-/*const [position, setPosition] = React.useState(' ');
 
-
-const [lunch, setLunch] = React.useState(' ');
-const [rate, setRate] = React.useState(' ');
-const [description, setDescription] = React.useState(' ');
-*/
 const ShiftPosting = () => {
     const navigation = useNavigation();
     const [Position, setPosition] = useState('');
