@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import ShiftsPosted from './ShiftsPosted';
 
 const Example = () => {
+    const navigation = useNavigation();
+
     return (
         <View style={[styles.container]}>
             <View style={[styles.textContainer]}>
@@ -14,7 +18,7 @@ const Example = () => {
                     labore et dolore magna aliqua. Nibh ipsum consequat nisl vel pretium lectus quam id. Id eu nisl nunc mi ipsum faucibus.</Text>
             </View>
             <View style={{ alignItems: 'center', margin: 150 }}>
-            <Button title={'Close shift'} />
+            <Button title={'Go Back'} onPress={() => navigation.navigate(ShiftsPosted)}/>
 
             </View>
         </View>
@@ -22,6 +26,16 @@ const Example = () => {
 }
 
 export default Example;
+
+function closeButton() {
+    const navigation = useNavigation();
+
+    return (
+        <Button
+            title={'Go to ${ShiftsPosted}'}
+            onPress={() => navigation.navigate(ShiftsPosted)} />
+    );
+}
 
 const styles = StyleSheet.create({
     container: {
