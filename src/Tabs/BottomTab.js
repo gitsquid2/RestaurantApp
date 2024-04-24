@@ -53,6 +53,9 @@ const Tabs = () => {
             
             <Tab.Screen name="ShiftsPosted" component={ShiftsPosted} options={{
                 headerShown: true,
+                headerTintColor: 'blue',
+                title: 'Open/Closed Shifts',
+                headerStyle: {backgroundColor: '#8BC2C6'},
                 tabBarIcon: ({ focused }) => (
                     <Feather 
                         name={'dollar-sign'}

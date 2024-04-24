@@ -7,6 +7,7 @@ import RestaurantReviewsPage from './src/Tabs/Screens/RestaurantReviewsPage.js';
 import Login from './src/Tabs/Screens/Login.js';
 import Signup from './src/Tabs/Screens/Signup.js';
 import HomeScreen from './src/Tabs/Screens/HomeScreen.js';
+import Example from './src/Tabs/Screens/Example.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,11 +19,12 @@ function App() {
       initialRouteName='Login'
       >
         <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
-        <Stack.Screen name="ShiftPosting" component={ShiftPosting} />
+        <Stack.Screen name="ShiftPosting" component={ShiftPosting} options={{title: 'Shift Posting', headerStyle: {backgroundColor: '#8BC2C6'}}} />
         <Stack.Screen name="RestaurantReviewsPage" component={RestaurantReviewsPage} />
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false}}/>
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="Example" component={Example} options={{title: 'Example Shift', headerStyle: {backgroundColor: '#8BC2C6'}}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
