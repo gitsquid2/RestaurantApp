@@ -25,7 +25,7 @@ const Tabs = () => {
     //<NavigationContainer>
 
         <Tab.Navigator 
-        initialRouteName="Logout"
+        initialRouteName="Home"
         screenOptions={{
             tabBarActiveTintColor: 'blue',
             tabBarInactiveTintColor: 'gray'
@@ -48,27 +48,14 @@ const Tabs = () => {
                         color={focused ? 'orange' : 'black'} />)
             
             }} />
-            <Tab.Screen name="ReviewsPage" component={RestaurantReviewsPage} options={{
-                headerShown: true,
-                tabBarIcon: ({ focused }) => (
-                    <Feather 
-                        name={'search'}
-                        size={25}
-                        color={focused ? 'orange' : 'black'} />)
             
-            }} />
             
-            <Tab.Screen name="Shiftposting" component={ShiftPosting} options={{
-                headerShown: true,
-                tabBarIcon: ({ focused }) => (
-                    <Feather 
-                        name={'dollar-sign'}
-                        size={25}
-                        color={focused ? 'orange' : 'black'} />)
             
-            }} />
             <Tab.Screen name="ShiftsPosted" component={ShiftsPosted} options={{
                 headerShown: true,
+                headerTintColor: 'blue',
+                title: 'Open/Closed Shifts',
+                headerStyle: {backgroundColor: '#8BC2C6'},
                 tabBarIcon: ({ focused }) => (
                     <Feather 
                         name={'dollar-sign'}

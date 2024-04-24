@@ -1,50 +1,77 @@
-import React from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import ShiftsPosted from './ShiftsPosted';
+import { useNavigation } from '@react-navigation/native';
 
-
-/*const [position, setPosition] = React.useState(' ');
-const [startTime, setStartTime] = React.useState(' ');
-const [endTime, setEndTime] = React.useState(' ');
-const [lunch, setLunch] = React.useState(' ');
-const [rate, setRate] = React.useState(' ');
-const [description, setDescription] = React.useState(' ');
-*/
 const ShiftPosting = () => {
-    //let [Position, onChangeText] = React.useState(' ');
+    const navigation = useNavigation();
+    const [Position, setPosition] = useState('');
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [jobDescription, setJobDescription] = useState('');
+    const [hourlyRate, setHourlyRate] = useState('');
+
+    const submitPosition = () => {
+        navigation.navigate('ShiftsPosted', { Position, startTime, endTime, jobDescription, hourlyRate });
+    }
+
     return (
-        
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <TouchableOpacity style={styles.closeButton}>
-                        <Ionicons name="close" size={24} color="black" />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.textboxContainer}>
-                    <TextInput style={styles.textbox} placeholder='Position'/>
-                    <TextInput style={styles.textbox} placeholder='Start Time'/>
-                    <TextInput style={styles.textbox} placeholder='End Time'/>
-                    <TextInput style={styles.textbox} placeholder='Lunch' />
-                    <TextInput style={styles.textbox} placeholder='Hourly Rate' />
-                    <TextInput style={styles.textbox2} placeholder='Job Description'
+        <View style={styles.container}>
+            <View style={styles.textboxContainer}>
+                <Text style={styles.Text}>Please enter in the details of the shift! </Text>
+                <TextInput
+                    style={styles.textbox}
+                    returnKeyType='done'
+                    placeholder='Position'
+                    value={Position}
+                    onChangeText={(text) => setPosition(text)}
+                />
+                <TextInput
+                    style={styles.textbox}
+                    returnKeyType='done'
+                    placeholder='Start Time'
+                    value={startTime}
+                    onChangeText={(text) => setStartTime(text)}
+                />
+                <TextInput
+                    style={styles.textbox}
+                    returnKeyType='done'
+                    placeholder='End Time'
+                    value={endTime}
+                    onChangeText={(text) => setEndTime(text)}
+                />
+                
+                <TextInput style={styles.textbox} 
+                returnKeyType='done' 
+                placeholder='Hourly Rate'
+                value={hourlyRate}
+                onChangeText={(text) => setHourlyRate(text)}
+                 />
+                <TextInput
+                    style={styles.textbox2}
+                    returnKeyType='done'
+                    placeholder='Job Description'
                     editable
                     multiline
                     numberOfLines={5}
-                    
-                    
-                    />
-                </View>
-                <Text> Position </Text>
+                    value={jobDescription}
+                    onChangeText={(text) => setJobDescription(text)}
+                />
             </View>
-        
+            <View style={styles.Buttons}>
+                <Button title='Submit' onPress={submitPosition} />
+                <Button title='Cancel' color='red' onPress={() => navigation.navigate('ShiftsPosted')} />
+            </View>
+        </View>
     );
 };
+
+export default ShiftPosting;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'lightgreen',
+        backgroundColor: '#bae7ea',
     },
     closeButton: {
         position: 'absolute',
@@ -68,8 +95,26 @@ const styles = StyleSheet.create({
     },
     textbox2: {
         height: 100, width: 200, borderColor: 'gray', borderWidth: 1, margin: 12,
-    }
+    },
+    Buttons: {
+        //borderWidth: 1,
+        //padding: 10,
+        margin: 75,
+        height: 60,
+        
+    },
+    closingButtons: {
+        position: 'absolute',
+        top: 50,
+        right: 20,
+    },
+    Text: {
+        fontSize: 20,
+        color: 'black',
+        fontWeight: 'bold',
+        height: 40,
+    },
+    
 
 });
 
-export default ShiftPosting;
