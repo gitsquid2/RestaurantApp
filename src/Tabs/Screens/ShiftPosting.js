@@ -1,45 +1,72 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import ShiftsPosted from './ShiftsPosted';
 import { useNavigation } from '@react-navigation/native';
-
 
 const ShiftPosting = () => {
     const navigation = useNavigation();
     const [Position, setPosition] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
+    const [jobDescription, setJobDescription] = useState('');
+    const [hourlyRate, setHourlyRate] = useState('');
+
     const submitPosition = () => {
-        navigation.navigate(ShiftsPosted, {Position, startTime, endTime});
+        navigation.navigate('ShiftsPosted', { Position, startTime, endTime, jobDescription, hourlyRate });
     }
+
     return (
-        
-            <View style={styles.container}>
+        <View style={styles.container}>
+            <View style={styles.textboxContainer}>
+                <Text style={styles.Text}>Please enter in the details of the shift! </Text>
+                <TextInput
+                    style={styles.textbox}
+                    returnKeyType='done'
+                    placeholder='Position'
+                    value={Position}
+                    onChangeText={(text) => setPosition(text)}
+                />
+                <TextInput
+                    style={styles.textbox}
+                    returnKeyType='done'
+                    placeholder='Start Time'
+                    value={startTime}
+                    onChangeText={(text) => setStartTime(text)}
+                />
+                <TextInput
+                    style={styles.textbox}
+                    returnKeyType='done'
+                    placeholder='End Time'
+                    value={endTime}
+                    onChangeText={(text) => setEndTime(text)}
+                />
                 
-                <View style={styles.textboxContainer}>
-                    <Text style={styles.Text}>Please enter in the details of the shift! </Text>
-                    <TextInput style={styles.textbox} returnKeyType='done' placeholder='Position'
-                    value={Position} onChangeText={(text) => setPosition(text)}/>
-                    <TextInput style={styles.textbox} returnKeyType='done' placeholder='Start Time'
-                    value={startTime} onChangeText={(text) => setStartTime(text)}/>
-                    <TextInput style={styles.textbox} returnKeyType='done' placeholder='End Time'
-                    value={endTime} onChangeText={(text) => setEndTime(text)}/>
-                    <TextInput style={styles.textbox} returnKeyType='done' placeholder='Lunch' />
-                    <TextInput style={styles.textbox} returnKeyType='done' placeholder='Hourly Rate' />
-                    <TextInput style={styles.textbox2} returnKeyType='done' placeholder='Job Description'
+                <TextInput style={styles.textbox} 
+                returnKeyType='done' 
+                placeholder='Hourly Rate'
+                value={hourlyRate}
+                onChangeText={(text) => setHourlyRate(text)}
+                 />
+                <TextInput
+                    style={styles.textbox2}
+                    returnKeyType='done'
+                    placeholder='Job Description'
                     editable
                     multiline
                     numberOfLines={5}
-                    />
-                </View>
-                <View style={styles.Buttons}>
-                    <Button  title='Submit' onPress={(submitPosition)}/>
-                    <Button  title='Cancel' color='red' onPress={() => navigation.navigate(ShiftsPosted)}/>
-                </View>
+                    value={jobDescription}
+                    onChangeText={(text) => setJobDescription(text)}
+                />
             </View>
-        
+            <View style={styles.Buttons}>
+                <Button title='Submit' onPress={submitPosition} />
+                <Button title='Cancel' color='red' onPress={() => navigation.navigate('ShiftsPosted')} />
+            </View>
+        </View>
     );
 };
+
+export default ShiftPosting;
 
 const styles = StyleSheet.create({
     container: {
@@ -91,4 +118,3 @@ const styles = StyleSheet.create({
 
 });
 
-export default ShiftPosting;

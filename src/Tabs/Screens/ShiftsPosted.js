@@ -9,44 +9,66 @@ const ShiftsPosted = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const [shifts, setShifts] = React.useState([
-        {position: 'Wait Staff ', time: '9:00 AM - 5:00 PM', payRate: ' $15/hour', isOpen: true },
-        {position: 'Bus Boy', time: ' 1:00 PM - 9:00 PM', payRate: ' $13/hour', isOpen: false },
-        {position: 'Wait Staff ', time: ' 6:00 PM - 2:00 AM', payRate: ' $15/hour', isOpen: true },
-        {position: 'Bus Boy', time: ' 4:00 PM - 9:00 PM', payRate: ' $13/hour', isOpen: false },
-        {position: 'Bartender', time: ' 12:00 PM - 9:00 PM', payRate: ' $18/hour', isOpen: true },
-        {position: 'Cashier', time: ' 9:00 AM - 5:00 PM', payRate: ' $18/hour', isOpen: false },
+        {position: 'Wait Staff ', time: '09:00 - 17:00', payRate: ' $15/hour', isOpen: true, description: 'lorem ipsum' },
+        {position: 'Bus Boy', time: '13:00 - 21:00', payRate: ' $13/hour', isOpen: false, description: 'lorem ipsum' },
+        {position: 'Wait Staff ', time: '18:00 - 02:00', payRate: ' $15/hour', isOpen: true, description: 'lorem ipsum'},
+        {position: 'Bus Boy', time: '16:00 - 21:00', payRate: ' $13/hour', isOpen: false, description: 'lorem ipsum'},
+        {position: 'Bartender', time: '12:00 - 21:00', payRate: ' $18/hour', isOpen: true, description: 'lorem ipsum'},
+        {position: 'Cashier', time: '09:00 - 17:00', payRate: ' $18/hour', isOpen: false, description: 'lorem ipsum' },
     ]);
-    
-    function openAllShifts() {
-        const updatedShifts = shifts.map(shift => ({ ...shift, isOpen: true }));
-        setShifts(updatedShifts);
+    function addNewShift() {
+        try {
+            const newShift = {
+                position: route.params.Position,
+                time: route.params.startTime + ' - ' + route.params.endTime,
+                payRate:'$' + route.params.hourlyRate + '/hour',
+                description: route.params.jobDescription,
+                isOpen: true
+            };
+            setShifts(prevShifts => [...prevShifts, newShift]);
+        } catch (error) {
+            Alert.alert("Error", "Error adding new shift, please click 'Post a Shift!' and then try again");
+        }
     }
 
-    function closeAllShifts() {
-        const updatedShifts = shifts.map(shift => ({ ...shift, isOpen: false }));
-        setShifts(updatedShifts);
-    }
 
-    function handleCancel() {
-        // Close the alert and do nothing
-    }
-
-    function handleOk() {
-        closeAllShifts();
-    }
-
-    function confirmCloseAllShifts() {
-        Alert.alert("Are you sure?");
-        [
-            { text: "Cancel", onPress: handleCancel },
-            { text: "OK", onPress: handleOk },
-        ];
-    }
     function handleShiftSelection(item) {
-        // Open an alert screen with shift information
-        const shiftInfo = `Position: ${item.position}\nTime: ${item.time}\nPay Rate: ${item.payRate}\nStatus: ${item.isOpen ? 'Open' : 'Closed'}`;
-        alert(shiftInfo);
-    }
+            const shiftInfo = `Position: ${item.position}\nTime: ${item.time}\nPay Rate: ${item.payRate}\nStatus: ${item.isOpen ? 'Open' : 'Closed'}\nDescription: ${item.description || 'N/A'}`;
+
+            Alert.alert(
+                "Shift Information",
+                shiftInfo,
+                [
+                    {
+                        text: "Clear",
+                        onPress: () => {
+                            const updatedShifts = shifts.filter(shift => shift !== item);
+                            setShifts(updatedShifts);
+                        },
+                        style: "destructive"
+                    },
+                    {
+                        text: "Close",
+                        onPress: () => {
+                            const updatedShifts = shifts.map(shift => {
+                                if (shift === item) {
+                                    return { ...shift, isOpen: false };
+                                }
+                                return shift;
+                            });
+                            setShifts(updatedShifts);
+                        },
+                        style: "default"
+                    },
+                    {
+                        text: "Cancel",
+                        onPress: () => {},
+                        style: "cancel"
+                    }
+                ]
+            );
+        }
+    
     const renderShiftItem = ({ item, index }) => (
         <TouchableOpacity style={[styles.shiftItem]} onPress={() => handleShiftSelection(item)}>
             <Text style={styles.shiftPosition}>{item.position}</Text>
@@ -60,42 +82,84 @@ const ShiftsPosted = () => {
         setShifts(sortedShifts);
     };
 
-    const sortTimeNumerically = () => {
-        const sortedShifts = [...shifts].sort((a, b) => {
-            const timeA = parseInt(a.time.split(':')[0]);
-            const timeB = parseInt(b.time.split(':')[0]);
-            const periodA = a.time.split(' ')[1];
-            const periodB = b.time.split(' ')[1];
-
-            if (periodA === periodB) {
-                return timeA - timeB;
-            } else if (periodA === 'AM' && periodB === 'PM') {
-                return -1;
-            } else {
-                return 1;
-            }
-        });
+    const sortPositionReverseAlphabetically = () => {
+        const sortedShifts = [...shifts].sort((a, b) => b.position.localeCompare(a.position));
         setShifts(sortedShifts);
     };
 
-    const sortIsOpen = () => {
+    const toggleSortPosition = () => {
+        if (shifts[0].position < shifts[shifts.length - 1].position) {
+            sortPositionReverseAlphabetically();
+        } else {
+            sortPositionAlphabetically();
+        }
+    };
+
+    const [isStartTimeAscending, setIsStartTimeAscending] = React.useState(true);
+    const [isEndTimeAscending, setIsEndTimeAscending] = React.useState(true);
+
+    const sortStartTimeNumerically = () => {
         const sortedShifts = [...shifts].sort((a, b) => {
-            if (a.isOpen && !b.isOpen) {
-                return -1;
-            } else if (!a.isOpen && b.isOpen) {
-                return 1;
+            const startTimeA = parseInt(a.time.split(' - ')[0].split(':')[0]);
+            const startTimeB = parseInt(b.time.split(' - ')[0].split(':')[0]);
+
+            if (isStartTimeAscending) {
+                return startTimeA - startTimeB;
             } else {
-                return 0;
+                return startTimeB - startTimeA;
             }
         });
         setShifts(sortedShifts);
+        setIsStartTimeAscending(!isStartTimeAscending);
+    };
+
+    const sortEndTimeNumerically = () => {
+        const sortedShifts = [...shifts].sort((a, b) => {
+            const endTimeA = parseInt(a.time.split(' - ')[1].split(':')[0]);
+            const endTimeB = parseInt(b.time.split(' - ')[1].split(':')[0]);
+
+            if (isEndTimeAscending) {
+                return endTimeA - endTimeB;
+            } else {
+                return endTimeB - endTimeA;
+            }
+        });
+        setShifts(sortedShifts);
+        setIsEndTimeAscending(!isEndTimeAscending);
+    };
+
+    const [isSortedByOpen, setIsSortedByOpen] = React.useState(true);
+
+    const sortIsOpen = () => {
+        const sortedShifts = [...shifts].sort((a, b) => {
+            if (isSortedByOpen) {
+                if (a.isOpen && !b.isOpen) {
+                    return -1;
+                } else if (!a.isOpen && b.isOpen) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            } else {
+                if (!a.isOpen && b.isOpen) {
+                    return -1;
+                } else if (a.isOpen && !b.isOpen) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+        setShifts(sortedShifts);
+        setIsSortedByOpen(!isSortedByOpen);
     };
 
     return (
         <View style={[styles.container]}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10 }}>
-                <Button title={'Position'} onPress={sortPositionAlphabetically} />
-                <Button title={'Time'} onPress={sortTimeNumerically} />
+                <Button title={'Position'} onPress={toggleSortPosition} />
+                <Button title={'Shift Start'} onPress={sortStartTimeNumerically} />
+                <Button title={'Shift End'} onPress={sortEndTimeNumerically} />
                 <Button title={'Open'} onPress={sortIsOpen} />
             </View>
             <FlatList
@@ -110,32 +174,17 @@ const ShiftsPosted = () => {
                     buttonStyle={{ margin: 50 }}
                     onPress={() => navigation.navigate(ShiftPosting)} />
 
+                
                 <Button
-                    title={'Open All Shifts'}
+                    title='Add New Shift'
                     buttonStyle={{ margin: 50 }}
-                    onPress={openAllShifts} />
-                <Button
-                    title={'Close All Shifts'}
-                    buttonStyle={{ margin: 50 }}
-                    onPress={confirmCloseAllShifts} />
+                    onPress={addNewShift} />
             </View>
         </View>
     );
 };
 
 export default ShiftsPosted;
-
-function postShift({}) {
-    const navigation = useNavigation();
-
-    return (
-        <Button
-            title={'Go to ${ShiftPosting}'}
-            onPress={() => navigation.navigate('ShiftPosting')}
-        />
-    );
-
-}
 
 function showExample({}) {
     const navigation = useNavigation();
