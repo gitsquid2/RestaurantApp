@@ -25,21 +25,22 @@ const Tabs = () => {
     //<NavigationContainer>
 
         <Tab.Navigator 
-        initialRouteName="Logout"
+        initialRouteName="Home"
         screenOptions={{
             tabBarActiveTintColor: 'blue',
             tabBarInactiveTintColor: 'gray'
         }}>
             <Tab.Screen name="Home" component={HomeScreen} options={{
-                headerShown: false,
+                headerShown: true,
                 tabBarIcon: ({ focused }) => (
                     <Feather 
                         name={'home'}
                         size={25}
-                        color={focused ? 'orange' : 'black'} />)
+                        color={focused ? 'orange' : 'black'}
+                        />)
             }}/>
             <Tab.Screen name="Profile" component={RestaurantProfile} options={{
-                headerShown: false,
+                headerShown: true,
                 tabBarIcon: ({ focused }) => (
                     <Feather 
                         name={'user'}
@@ -47,26 +48,14 @@ const Tabs = () => {
                         color={focused ? 'orange' : 'black'} />)
             
             }} />
-            <Tab.Screen name="ReviewsPage" component={RestaurantReviewsPage} options={{
-                headerShown: false,
-                tabBarIcon: ({ focused }) => (
-                    <Feather 
-                        name={'search'}
-                        size={25}
-                        color={focused ? 'orange' : 'black'} />)
             
-            }} />
-            <Tab.Screen name="Shiftposting" component={ShiftPosting} options={{
-                headerShown: false,
-                tabBarIcon: ({ focused }) => (
-                    <Feather 
-                        name={'dollar-sign'}
-                        size={25}
-                        color={focused ? 'orange' : 'black'} />)
             
-            }} />
+            
             <Tab.Screen name="ShiftsPosted" component={ShiftsPosted} options={{
-                headerShown: false,
+                headerShown: true,
+                headerTintColor: 'blue',
+                title: 'Open/Closed Shifts',
+                headerStyle: {backgroundColor: '#8BC2C6'},
                 tabBarIcon: ({ focused }) => (
                     <Feather 
                         name={'dollar-sign'}
@@ -75,7 +64,8 @@ const Tabs = () => {
             
             }} />
             <Tab.Screen name="Logout" component={LoginScreen} options={{
-                headerShown: false,
+                headerShown: true,
+                
                 tabBarIcon: ({ focused }) => (
                     <Feather 
                         name={'log-out'}
