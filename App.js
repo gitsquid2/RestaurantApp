@@ -24,7 +24,6 @@ function App() {
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false}}/>
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="Example" component={Example} options={{title: 'Example Shift', headerStyle: {backgroundColor: '#8BC2C6'}}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

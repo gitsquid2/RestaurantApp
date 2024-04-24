@@ -1,57 +1,82 @@
-import react,{useState} from 'react'
-import {StyleSheet,View,Text,Image,TextInput,TouchableOpacity, Touchable} from 'react-native'
-import { StatusBar } from "expo-status-bar";
+import react,{useState} from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View,Image,TextInput,TouchableOpacity } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
+import {signInWithEmailAndPassword}from 'firebase/auth';
+import { FIREBASE_AUTH } from '../../../firebaseConfig';
 
 
 
-const Login = () =>{
-    
+const Login=()=> {
     const [username, setUsername] = useState('');
-    const [password, setPassword] =useState('');
+    const [password, setPassword] =useState(''); 
+    const auth=FIREBASE_AUTH;
+    const[loading,setLoading]=useState(false);
     const navigation = useNavigation();
+    
 
-    const handleLogin = () => {
-       navigation.navigate('Tabs')
-      {/**propper auth needs to be handles here */}
-    }
+    {/**Handle login using firebase */}
+    const handleLogin = async () => {
+      try {
+        setLoading(true);
+        const userCredential = await signInWithEmailAndPassword(auth, username, password);
+        const user = userCredential.user;
+        if (user) {
+          navigation.navigate('Tabs', { screen: 'Home' });
+        }
+      } catch (error) {
+        console.log(error);
+        alert('Invalid username or password');
+      } finally {
+        setLoading(false);
+      }
+    };
+   {/* const handleLogin = () => { //this was the original just onPress handler
+     } navigation.navigate('AppTabNavigator',{screen:'Home'}); 
+     
+    } */}
 
     const handleSignup=()=>{
         navigation.navigate('Signup')
     };
 
-    
-    return (
-        <View style={styles.container}>
-          {/**for some reason this is not picking up */}
-          <Image source={require('../../../assets/setter.png')} style={styles.image} />
-            <Text style={styles.title}>Login</Text>
-            <TextInput
+  return (
+    <View style={styles.container}>
+        <Image source={require('../../../assets/logoDoogle.png')}style={styles.image} />
+        <Text style={styles.title}>Login</Text>
+
+      <TextInput
             style={styles.input}
             placeholder="Username"
+            autoCapitalize='none'
             value={username}
             onChangeText={setUsername}
             />
-            <TextInput
+
+      <TextInput
             style={styles.input}
             placeholder="Password"
             secureTextEntry={true}
             value={password}
             onChangeText={setPassword}
             />
-             <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
+{/**Add sesction to confirm password entry here.. */}
 
-      {/**Signup Link */}
+
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
       <TouchableOpacity onPress={handleSignup}>
-                <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
-            </TouchableOpacity>
-        </View>   
-    )
-    }
+            <Text style={styles.signupText}>Don't have an account? Sign Up 
+            </Text>
+    
+       </TouchableOpacity>
 
 
+      <StatusBar style="auto" />
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -63,9 +88,10 @@ const styles = StyleSheet.create({
     },  
      
     image: {
-      width: 200,
-      height: 200,
+      width: 400,
+      height: 400,
       resizeMode: 'contain',
+      margin: 15,
     },
     title: {
         fontSize: 24,
