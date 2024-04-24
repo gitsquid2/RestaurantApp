@@ -30,7 +30,7 @@ const handleSignup = async () => {
   }
 };
   const handleSignIn = () => {
-    navigation.navigate('AuthStack', { screen: 'Login' });
+    navigation.navigate('Login');
   };
 
   return (
