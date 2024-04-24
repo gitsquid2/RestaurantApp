@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, StyleSheet, Modal, TouchableOpacity, TextInput, ScrollView,} from 'react-native'
-import RestaurantReviewsPage from './RestaurantReviewsPage';
+import {View, Text, StyleSheet, Modal, TouchableOpacity, TextInput, ScrollView, Image} from 'react-native'
 
 /* Project Chelsea Restaurant Profile screen-
    These are the included feature and items held within this screen:
@@ -43,30 +42,23 @@ const RestaurantProfile = ({navigation}) => {
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
             <View style={{...styles.container, padding: 10}}>
                 
-                <View>
+                <View style = {{paddingTop: 20}}>
                     {/* This is the company name */}
-                    <Text style={styles.headText}> Example Company Name </Text>
+                    <Text style={styles.headText}> Olive Garden: Italian Kitchen</Text>
                 </View>
 
-                    {/* This is the holder for the profile picture, and edit button. Please replace the "view" (and txt)
-                        with "image" and location if changed to a picture later. This section also holds
-                        the button to get to the edit profile pop-up 4-7-2024*/}
+                    {/* If this is used later please use an image stored in the application instead of a url/uri 4-17-2014*/}
                 <View style = {{flexDirection: 'row', paddingTop: 10, paddingBottom: 10}}>
                     
-                    <View style={{
-                        padding: 10,
-                        width: 150,
-                        height: 150,
-                        backgroundColor: utOrange,
-                        marginBottom: 15,
-                        borderRadius: 5,
-                        }}>
-                            
-                        <Text style={{fontWeight: 'bold', color: beanBrown, fontSize: 60, textAlign: 'center', marginTop: 20}}> PFP </Text>
-                        
+                    <View>
+
+                        <Image source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdWbVNDxrSh6O2Ql-lU0t24osTPQxQLvpaUOCUzAKtfg&s'}}
+                        style={{ width: 150, height: 150, marginTop: 20}}
+                        />
+
                         {/* This is the code for the profile editor*/}
                         <View>
-                                <TouchableOpacity onPress={toggleModal} style={{...styles.editButton, marginLeft: 115, marginTop: 15,}}>
+                                <TouchableOpacity onPress={toggleModal} style={{...styles.editButton}}>
                                     <Text style={styles.editButtonTxt}>Edit</Text>
                                 </TouchableOpacity>
 
@@ -154,30 +146,28 @@ const RestaurantProfile = ({navigation}) => {
                         {/* This is the holder for the contact info.*/}
                     <View style = {{paddingLeft: 15, paddingTop: 10}}>
                         <Text style={{...styles.bodyText, fontWeight: 'bold'}}>Phone Number:</Text>
-                        <Text style = {styles.bodyText}>+# (###) ###-####</Text>
+                        <Text style = {styles.bodyText}>+1 (865)584-7300</Text>
 
                         <Text style={{...styles.bodyText, fontWeight: 'bold'}}>Email Address:</Text>
-                        <Text style = {styles.bodyText}>ExampleMail@example.com</Text>
+                        <Text style = {styles.bodyText}>FakeGarden@example.com</Text>
 
                         <Text style={{...styles.bodyText, fontWeight: 'bold'}}>Location:</Text>
-                        <Text style = {styles.bodyText}>#### Some St. City, State</Text>
+                        <Text style = {{...styles.bodyText}}>7206 Kingston Pike {'\n'}Knoxville, TN 37919</Text>
                     </View>
                 </View>
                 
-                {/* This is the section where they can see their rating and go to the reviews w/ button
-                    If this application were to be continued there would be a banner picture uploaded
-                    instead of the color box.*/}
-                <View style={{
-                        padding: 10,
-                        alignSelf: 'stretch',
-                        alignItems: 'stretch',
-                        backgroundColor: byzBlue,
-                        flexDirection: 'column',
-                        marginBottom: 15,
-                        borderRadius: 5,
-                        }}>
-                            
-                        <Text style={{fontWeight: 'bold', color: seaShell, fontSize: 25,}}>Rating: ##</Text>
+                {/* If this is used later please use an image stored in the application instead of a url/uri 4-17-2014 */}
+                <View style={styles.container}>
+
+                    <Image
+                        source={{ uri: 'https://www.freightwaves.com/wp-content/uploads/2022/09/shutterstock_2156426831.jpg' }}
+                        style={{width: '100%', height: 150, borderRadius: 10}}
+                        resizeMode="cover"
+                    />
+
+                    <View style={styles.overlayContainer}>
+
+                        <Text style={{textAlign: 'left', fontWeight: 'bold', color: seaShell, fontSize: 25,}}>Rating: ##</Text>
                         
                         {/* This is an extra view for holding the "stars."" If this is used later please make the rating #
                             respond to the amount of stars, and change the to stars with maybe images or SVG.*/}
@@ -193,22 +183,28 @@ const RestaurantProfile = ({navigation}) => {
                             <Text style={styles.reviewButtonText}>View Reviews</Text>
                         </TouchableOpacity>
 
+                    </View>
+
                 </View>
                 
                 <Text style = {{...styles.sectionHeadText}}>Bio:</Text>
-                <Text style={{...styles.bodyText, marginBottom: 10}}>Here is a rant about my cat to act as text for the company bio. My cat's name is eclipse.
-                    He is super silly and hes got lil fangs. His fangs make his breath stinky, but I still give him pets. He is just a
-                    little guy. He is super sweet and he likes to sit there with you. Eclipse is also very responsive to the pstpstpst cat call.
-                    I wish I had free time so I could pet my cat. </Text>
+                <Text style={{...styles.bodyText, marginBottom: 10}}>At Olive Garden, we know that life is better together and everyone is happiest when they’re
+                    with family. From never ending servings of our freshly baked breadsticks and iconic garden
+                    salad, to our homemade soups and sauces, there’s something for everyone to enjoy.</Text>
 
-                <Text style = {{...styles.sectionHeadText}}>Mission:</Text>
-                <Text style={{...styles.bodyText, marginBottom: 10}}>Eclipses mission is to get petted, and not eat anything but cat treats. </Text>
+                    <Text style = {{...styles.sectionHeadText}}>Mission:</Text>
+                <Text style={{...styles.bodyText, marginBottom: 10}}>At Olive Garden, we want the experience of warmth and caring to extend beyond our restaurant 
+                    walls and into every community where we live and serve. Our restaurants throughout the US and Canada are committed to giving back to their 
+                    communities through a variety of local efforts, such as delivering meals in times of need and supporting local non-profits and organizations. 
+                    Restaurants also participate in various company-wide community relations programs.</Text>
 
                 <Text style = {{...styles.sectionHeadText}}>Vision:</Text>
-                <Text style={{...styles.bodyText, marginBottom: 10}}>We think eclipse doesn't have good vision. He doesn't know how to eat treats out of our hands. </Text>
+                <Text style={{...styles.bodyText, marginBottom: 10}}>Hospitaliano! Our Never Ending passion for 100% guest delight: We inspire a world with more human 
+                    connection We take pride in doing it right the first time We welcome everyone as family and friends.</Text>
                 
                 <Text style = {{...styles.sectionHeadText}}>Company Culture:</Text>
-                <Text style={{...styles.bodyText, marginBottom: 10}}>He is not a very cultured lil man at 1 year old. </Text>
+                <Text style={{...styles.bodyText, marginBottom: 10}}>You join a large family when you work at Olive Garden. Every person who walks through our doors is 
+                    welcomed and accepted. Our team members often develop life-long friendships that extend beyond the workplace.</Text>
 
             </View>
         </ScrollView>
@@ -259,12 +255,13 @@ const styles = StyleSheet.create({
         marginTop: 5,
         paddingVertical: 3,
         paddingHorizontal: 20,
-        backgroundColor: utOrange,
+        backgroundColor: byzBlue,
         borderRadius: 5,
     },
     reviewButtonText: {
-        color: beanBrown,
+        color: seaShell,
         fontWeight: 'bold',
+        textAlign: 'center'
     },
     editButton: {
         width: 30,
@@ -273,6 +270,9 @@ const styles = StyleSheet.create({
         backgroundColor: byzBlue,
         justifyContent: 'center',
         alignItems: 'center',
+        position: 'absolute',
+        bottom: -5,
+        right: -5
       },
       editButtonTxt: {
         color: seaShell,
@@ -319,6 +319,11 @@ const styles = StyleSheet.create({
       scrollViewContent: {
         flexGrow: 1,
       },
+      overlayContainer: {
+        ...StyleSheet.absoluteFillObject,
+        textAlign: 'left',
+        marginHorizontal: 10,
+      }
   });
 
 
