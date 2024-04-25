@@ -22,7 +22,6 @@ const ShiftPosting = () => {
                 <TextInput
                     style={styles.textbox}
                     returnKeyType='done'
-                    
                     placeholder='Position'
                     value={Position}
                     onChangeText={(text) => setPosition(text)}
@@ -31,6 +30,7 @@ const ShiftPosting = () => {
                     style={styles.textbox}
                     returnKeyType='done'
                     placeholder='Start Time'
+                    inputMode='numeric'
                     value={startTime}
                     onChangeText={(text) => setStartTime(text)}
                 />
@@ -38,6 +38,7 @@ const ShiftPosting = () => {
                     style={styles.textbox}
                     returnKeyType='done'
                     placeholder='End Time'
+                    inputMode='numeric'
                     value={endTime}
                     onChangeText={(text) => setEndTime(text)}
                     
@@ -56,7 +57,7 @@ const ShiftPosting = () => {
                     returnKeyType='done'
                     placeholder='Job Description'
                     editable
-                    multiline
+                    multiline = {true}
                     numberOfLines={5}
                     value={jobDescription}
                     onChangeText={(text) => setJobDescription(text)}
