@@ -2,19 +2,34 @@ import React from 'react';
 import {Modal, View, Text, StyleSheet, FlatList, Button, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ShiftPosting from './ShiftPosting.js';
-import Example from './Example.js';
 
+class Person {
+    constructor(name, age, address, phoneNumber, qualifications) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.qualifications = qualifications;
+    }
+}
 
 const ShiftsPosted = () => {
     const navigation = useNavigation();
     const route = useRoute();
+    const person = new Person(
+        'Owen Humphrey',
+        31,
+        '999 Lorem Ipsum Ln.',
+        '999-999-9999',
+        'Lorem Ipsum 2 years, eekum bokum 1 year'
+    );
     const [shifts, setShifts] = React.useState([
-        {position: 'Wait Staff ', time: '09:00 - 17:00', payRate: ' $15/hour', isOpen: true, description: 'lorem ipsum' },
-        {position: 'Bus Boy', time: '13:00 - 21:00', payRate: ' $13/hour', isOpen: false, description: 'lorem ipsum' },
-        {position: 'Wait Staff ', time: '18:00 - 02:00', payRate: ' $15/hour', isOpen: true, description: 'lorem ipsum'},
-        {position: 'Bus Boy', time: '16:00 - 21:00', payRate: ' $13/hour', isOpen: false, description: 'lorem ipsum'},
-        {position: 'Bartender', time: '12:00 - 21:00', payRate: ' $18/hour', isOpen: true, description: 'lorem ipsum'},
-        {position: 'Cashier', time: '09:00 - 17:00', payRate: ' $18/hour', isOpen: false, description: 'lorem ipsum' },
+        {position: 'Wait Staff ', time: '0900 - 1700', payRate: ' $15/hour', isOpen: true, description: 'lorem ipsum', status: ' Pending' },
+        {position: 'Bus Boy', time: '1300 - 2100', payRate: ' $13/hour', isOpen: false, description: 'lorem ipsum', status: ' Pending' },
+        {position: 'Wait Staff ', time: '1800 - 0200', payRate: ' $15/hour', isOpen: true, description: 'lorem ipsum', status: ' Pending'},
+        {position: 'Bus Boy', time: '1600 - 2100', payRate: ' $13/hour', isOpen: false, description: 'lorem ipsum', status: ' Pending'},
+        {position: 'Bartender', time: '1200 - 2100', payRate: ' $18/hour', isOpen: true, description: 'lorem ipsum', status: ' Pending'},
+        {position: 'Cashier', time: '0900 - 1700', payRate: ' $18/hour', isOpen: false, description: 'lorem ipsum', status: ' Pending' },
     ]);
     function addNewShift() {
         try {
@@ -30,10 +45,17 @@ const ShiftsPosted = () => {
             Alert.alert("Error", "Error adding new shift, please click 'Post a Shift!' and then try again");
         }
     }
+    const Status = {
+        Pending: 'Pending',
+        Accepting: 'Accepting',
+        Approved: 'Approved',
+        Declined: 'Declined'
+    };
+
 
 
     function handleShiftSelection(item) {
-            const shiftInfo = `Position: ${item.position}\nTime: ${item.time}\nPay Rate: ${item.payRate}\nStatus: ${item.isOpen ? 'Open' : 'Closed'}\nDescription: ${item.description || 'N/A'}`;
+            const shiftInfo = `Position: ${item.position}\nTime: ${item.time}\nPay Rate: ${item.payRate}\nStatus: ${item.isOpen ? 'Open' : 'Closed'}\nDescription: ${item.description || 'N/A'}\nStatus: ${item.status}`;
 
             Alert.alert(
                 "Shift Information",
@@ -75,6 +97,7 @@ const ShiftsPosted = () => {
             <Text style={styles.shiftTime}>{item.time}</Text>
             <Text style={styles.shiftPayRate}>{item.payRate}</Text>
             <Text style={styles.shiftStatus}>{item.isOpen ? 'Open' : ' Closed'}</Text>
+            <Text style={styles.shiftStatus}>{item.status}</Text>
         </TouchableOpacity>
     );
     const sortPositionAlphabetically = () => {
@@ -154,6 +177,40 @@ const ShiftsPosted = () => {
         setIsSortedByOpen(!isSortedByOpen);
     };
 
+    const acceptShift = () => {
+        const personInfo = `Name: ${person.name}\nAge: ${person.age}\nAddress: ${person.address}\nPhone Number: ${person.phoneNumber}\nQualifications: ${person.qualifications}`;
+
+        Alert.alert(
+            "Personal Information",
+            personInfo,
+            [
+            {
+                text: "Accept",
+                onPress: () => {
+                const updatedShifts = [...shifts];
+                updatedShifts[0].status = 'Accepted';
+                setShifts(updatedShifts);
+                },
+                style: "default"
+            },
+            {
+                text: "Declined",
+                onPress: () => {
+                const updatedShifts = [...shifts];
+                updatedShifts[0].status = 'Declined';
+                setShifts(updatedShifts);
+                },
+                style: "destructive"
+            },
+            {
+                text: "Cancel",
+                onPress: () => {},
+                style: "cancel"
+            }
+            ]
+        );
+    };
+
     return (
         <View style={[styles.container]}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10 }}>
@@ -179,6 +236,10 @@ const ShiftsPosted = () => {
                     title='Add New Shift'
                     buttonStyle={{ margin: 50 }}
                     onPress={addNewShift} />
+                <Button
+                    title='Accept Shift'
+                    buttonStyle={{ margin: 50 }}
+                    onPress={acceptShift} />
             </View>
         </View>
     );

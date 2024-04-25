@@ -7,7 +7,7 @@ import RestaurantReviewsPage from './src/Tabs/Screens/RestaurantReviewsPage.js';
 import Login from './src/Tabs/Screens/Login.js';
 import Signup from './src/Tabs/Screens/Signup.js';
 import HomeScreen from './src/Tabs/Screens/HomeScreen.js';
-import Example from './src/Tabs/Screens/Example.js';
+
 
 const Stack = createNativeStackNavigator();
 
