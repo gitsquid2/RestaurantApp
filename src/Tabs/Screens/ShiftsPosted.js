@@ -178,10 +178,12 @@ const ShiftsPosted = () => {
     };
 
     const acceptShift = () => {
+        const shiftInfo = `Position: ${shifts[0].position}`;
         const personInfo = `Name: ${person.name}\nAge: ${person.age}\nAddress: ${person.address}\nPhone Number: ${person.phoneNumber}\nQualifications: ${person.qualifications}`;
 
         Alert.alert(
             "Personal Information",
+            shiftInfo + '\n' +
             personInfo,
             [
             {
@@ -213,7 +215,7 @@ const ShiftsPosted = () => {
 
     return (
         <View style={[styles.container]}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 15, }}>
                 <Button title={'Position'} onPress={toggleSortPosition} />
                 <Button title={'Shift Start'} onPress={sortStartTimeNumerically} />
                 <Button title={'Shift End'} onPress={sortEndTimeNumerically} />
@@ -263,7 +265,7 @@ function showExample({}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#bae7ea',
+        backgroundColor: '#fef4f0',
         alignItems: 'center',
         justifyContent: 'center',
     },

@@ -22,6 +22,7 @@ const ShiftPosting = () => {
                 <TextInput
                     style={styles.textbox}
                     returnKeyType='done'
+                    
                     placeholder='Position'
                     value={Position}
                     onChangeText={(text) => setPosition(text)}
@@ -39,11 +40,14 @@ const ShiftPosting = () => {
                     placeholder='End Time'
                     value={endTime}
                     onChangeText={(text) => setEndTime(text)}
+                    
                 />
                 
                 <TextInput style={styles.textbox} 
+                
                 returnKeyType='done' 
                 placeholder='Hourly Rate'
+                inputMode='numeric'
                 value={hourlyRate}
                 onChangeText={(text) => setHourlyRate(text)}
                  />
@@ -71,7 +75,7 @@ export default ShiftPosting;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#bae7ea',
+        backgroundColor: '#FEF4F0',
     },
     closeButton: {
         position: 'absolute',

@@ -8,7 +8,6 @@ import Login from './src/Tabs/Screens/Login.js';
 import Signup from './src/Tabs/Screens/Signup.js';
 import HomeScreen from './src/Tabs/Screens/HomeScreen.js';
 
-
 const Stack = createNativeStackNavigator();
 
 function App() {
