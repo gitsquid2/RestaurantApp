@@ -38,7 +38,8 @@ const ShiftsPosted = () => {
                 time: route.params.startTime + ' - ' + route.params.endTime,
                 payRate:'$' + route.params.hourlyRate + '/hour',
                 description: route.params.jobDescription,
-                isOpen: true
+                isOpen: true,
+                status: 'Pending'
             };
             setShifts(prevShifts => [...prevShifts, newShift]);
         } catch (error) {

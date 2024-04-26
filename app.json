@@ -15,9 +15,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.owenrhump1.RestaurantApp"
     },
     "android": {
+      "softwareKeyboardLayoutMode": "adjustPan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -25,6 +27,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8cb7e687-6580-4ab0-92b7-0ef6815b2f4c"
+      }
     }
   }
 }

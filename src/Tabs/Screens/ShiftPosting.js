@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import ShiftsPosted from './ShiftsPosted';
 import { useNavigation } from '@react-navigation/native';
+import { Platform } from 'react-native';
 
 const ShiftPosting = () => {
     const navigation = useNavigation();
@@ -75,7 +76,7 @@ export default ShiftPosting;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        height: '100%',
         backgroundColor: '#FEF4F0',
     },
     closeButton: {
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     },
     textboxContainer: {
         marginTop: 50,
-        flex: 1,
+        height: '71%',
         //justifyContent: 'center',
         alignItems: 'center',
         
